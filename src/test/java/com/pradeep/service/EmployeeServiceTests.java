@@ -5,23 +5,35 @@ import com.pradeep.repository.EmployeeRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import  org.mockito.BDDMockito;
+import org.junit.jupiter.api.extension.ExtendWith;
+import static org.mockito.BDDMockito.given;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
 import org.mockito.Mockito;
+import org.mockito.junit.jupiter.MockitoExtension;
+
 import static org.assertj.core.api.Assertions.assertThat;
 import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-
+@ExtendWith(MockitoExtension.class)
 public class EmployeeServiceTests {
 
+    @Mock
     private EmployeeRepository employeeRepository;
-    private IEmployeeService employeeService;
 
+    @InjectMocks
+    private EmployeeServiceImpl employeeService;
+
+    private  Employee employee;
     @BeforeEach
     public void setup(){
-        employeeRepository= Mockito.mock(EmployeeRepository.class);
-        employeeService=new EmployeeServiceImpl(employeeRepository);
+        employee=Employee.builder()
+                .firstName("Nandini")
+                .lastName("SM")
+                .email("smnandini@gmail.com")
+                .build();
     }
 
     // Junit Tests for custom query using jqpql operation
@@ -30,16 +42,8 @@ public class EmployeeServiceTests {
     public void givenEmployeeObj_whenSave_thenReturnSavedEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
-                .id(1L)
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();
-
-        BDDMockito.given(employeeRepository.findByEmail(employee.getEmail()))
-                .willReturn(Optional.empty());
-        BDDMockito.given(employeeRepository.save(employee)).willReturn(employee);
+        given(employeeRepository.findByEmail(employee.getEmail())).willReturn(Optional.empty());
+        given(employeeRepository.save(employee)).willReturn(employee);
 
         // when
         Employee savedEmployee=employeeService.createEmployee(employee);
