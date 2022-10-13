@@ -36,12 +36,6 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObject_whenSave_thenReturnSavedEmployee(){
         // given - pre condition or setup
 
-        /*Employee employee=Employee.builder()
-                .firstName("Pradeep")
-                .lastName("Kumar")
-                .email("pradeepkumarhe1989@gmail.com")
-                .build();*/
-
         // when - action or the behaviour that we are going to test
         Employee savedEmployee=employeeRepository.save(employee);
 
@@ -59,17 +53,13 @@ public class EmployeeRepositoryTests {
                 .lastName("Kumar")
                 .email("pradeepkumarhe1989@gmail.com")
                 .build();
-
-        /*Employee employee2=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee1);
         employeeRepository.save(employee);
+
         // when
          List<Employee> employeeList=employeeRepository.findAll();
-        //then
+
+         //then
         assertThat(employeeList).isNotNull();
         assertThat(employeeList.size()).isEqualTo(2);
     }
@@ -79,11 +69,6 @@ public class EmployeeRepositoryTests {
     public void givenEmployeesObj_whenFindById_thenReturnEmpObject(){
 
         // given(setup)
-        /*Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -98,11 +83,6 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeEmail_whenFindByEmail_thenReturnEmpObject(){
 
         // given(setup)
-       /* Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -117,18 +97,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObj_whenUpdateEmployee_thenReturnUpdatedEmpObject(){
 
         // given(setup)
-        /*Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
-        employeeRepository.save(employee);
+         employeeRepository.save(employee);
 
         // when
         Employee savedemployee=employeeRepository.findById(employee.getId()).get();
-
         savedemployee.setEmail("nandinism@gmail.com");
-
         Employee updatedemployee=employeeRepository.save(savedemployee);
 
         //then
@@ -140,11 +113,6 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObj_whenDelete_thenRemoveFromDB(){
 
         // given(setup)
-       /* Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -160,13 +128,7 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByJPQL_thenReturnEmpObject(){
 
         // given(setup)
-        /*Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
-        employeeRepository.save(employee);
-
+       employeeRepository.save(employee);
         String firstName="Nandini";
         String lastName="SM";
 
@@ -182,13 +144,7 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByJPQLNamedParams_thenReturnEmpObject(){
 
         // given(setup)
-        /*Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee);
-
         String firstName="Nandini";
         String lastName="SM";
 
@@ -204,13 +160,7 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByNativeSQL_thenReturnEmpObject(){
 
         // given(setup)
-       /* Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee);
-
         String firstName="Nandini";
         String lastName="SM";
 
@@ -226,14 +176,7 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByNativeSQLNamedParams_thenReturnEmpObject(){
 
         // given(setup)
-
-        /* Employee employee=Employee.builder()
-                .firstName("Nandini")
-                .lastName("SM")
-                .email("smnandini@gmail.com")
-                .build();*/
         employeeRepository.save(employee);
-
         String firstName="Nandini";
         String lastName="SM";
 
