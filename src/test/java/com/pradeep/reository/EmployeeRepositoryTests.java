@@ -3,6 +3,8 @@ package com.pradeep.reository;
 import com.pradeep.models.Employee;
 import com.pradeep.repository.EmployeeRepository;
 import static org.assertj.core.api.Assertions.assertThat;
+
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,17 +19,28 @@ public class EmployeeRepositoryTests {
     @Autowired
     private EmployeeRepository employeeRepository;
 
+    private  Employee employee;
+
+    @BeforeEach
+    private void setUp(){
+        employee=Employee.builder()
+                .firstName("Nandini")
+                .lastName("SM")
+                .email("smnandini@gmail.com")
+                .build();
+    }
     // Junit Tests for save employee operation
 
     @DisplayName("Junit Tests for save employee operation")
     @Test
     public void givenEmployeeObject_whenSave_thenReturnSavedEmployee(){
         // given - pre condition or setup
-        Employee employee=Employee.builder()
+
+        /*Employee employee=Employee.builder()
                 .firstName("Pradeep")
                 .lastName("Kumar")
                 .email("pradeepkumarhe1989@gmail.com")
-                .build();
+                .build();*/
 
         // when - action or the behaviour that we are going to test
         Employee savedEmployee=employeeRepository.save(employee);
@@ -47,13 +60,13 @@ public class EmployeeRepositoryTests {
                 .email("pradeepkumarhe1989@gmail.com")
                 .build();
 
-        Employee employee2=Employee.builder()
+        /*Employee employee2=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee1);
-        employeeRepository.save(employee2);
+        employeeRepository.save(employee);
         // when
          List<Employee> employeeList=employeeRepository.findAll();
         //then
@@ -66,11 +79,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeesObj_whenFindById_thenReturnEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+        /*Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -85,11 +98,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeEmail_whenFindByEmail_thenReturnEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+       /* Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -104,11 +117,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObj_whenUpdateEmployee_thenReturnUpdatedEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+        /*Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -127,11 +140,11 @@ public class EmployeeRepositoryTests {
     public void givenEmployeeObj_whenDelete_thenRemoveFromDB(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+       /* Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         // when
@@ -147,11 +160,11 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByJPQL_thenReturnEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+        /*Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         String firstName="Nandini";
@@ -169,11 +182,11 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByJPQLNamedParams_thenReturnEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+        /*Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         String firstName="Nandini";
@@ -191,11 +204,11 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByNativeSQL_thenReturnEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+       /* Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         String firstName="Nandini";
@@ -213,11 +226,12 @@ public class EmployeeRepositoryTests {
     public void givenFirstNameLastName_whenFindByNativeSQLNamedParams_thenReturnEmpObject(){
 
         // given(setup)
-        Employee employee=Employee.builder()
+
+        /* Employee employee=Employee.builder()
                 .firstName("Nandini")
                 .lastName("SM")
                 .email("smnandini@gmail.com")
-                .build();
+                .build();*/
         employeeRepository.save(employee);
 
         String firstName="Nandini";
