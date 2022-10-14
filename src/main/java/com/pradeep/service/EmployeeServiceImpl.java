@@ -1,9 +1,8 @@
 package com.pradeep.service;
 
-import com.pradeep.exceptions.ResourceNotFoundException;
+import com.pradeep.exceptions.ResourceExistsException;
 import com.pradeep.models.Employee;
 import com.pradeep.repository.EmployeeRepository;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -23,7 +22,7 @@ public class EmployeeServiceImpl implements IEmployeeService{
     public Employee createEmployee(Employee employee) {
        Optional<Employee> optionalEmployee=employeeRepository.findByEmail(employee.getEmail());
        if(optionalEmployee.isPresent()){
-           throw new ResourceNotFoundException("Employee exists :: "+employee.getEmail());
+           throw new ResourceExistsException("Employee exists :: "+employee.getEmail());
        }
         return employeeRepository.save(employee);
     }

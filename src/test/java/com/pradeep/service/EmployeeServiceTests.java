@@ -1,6 +1,6 @@
 package com.pradeep.service;
 
-import com.pradeep.exceptions.ResourceNotFoundException;
+import com.pradeep.exceptions.ResourceExistsException;
 import com.pradeep.models.Employee;
 import com.pradeep.repository.EmployeeRepository;
 import org.junit.jupiter.api.Assertions;
@@ -13,7 +13,6 @@ import static org.mockito.ArgumentMatchers.any;
 
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -71,7 +70,7 @@ public class EmployeeServiceTests {
         // given(setup)
         given(employeeRepository.findByEmail(employee.getEmail())).willReturn(Optional.of(employee));
 
-        Assertions.assertThrows(ResourceNotFoundException.class,()->{
+        Assertions.assertThrows(ResourceExistsException.class,()->{
             employeeService.createEmployee(employee);
         });
 
